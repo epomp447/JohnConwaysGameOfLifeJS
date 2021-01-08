@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Conway's Game of Life </title>
+
+        <script type="text/javascript" src="model.js">       </script>
+        <script type="text/javascript" src="view.js" >       </script>
+        <script type="text/javascript" src="controller.js" > </script>
+    </head>
+
+    <body onresize="paint();" onload="paint();" >
+        <!-- canvas is in a div so i can stop it from being selected via double clicks. -->
+        <div id="canvasDiv">
+            <canvas id="can" width="800" height="600">
+                Sorry, canvas tag not supported.
+            </canvas>
+        </div>
+
+        <hr /> <div id="boardDiv"> </div>
+        <button onclick="reset()">Reset</button>
+        <button onclick="random()">Random</button>
+        <button onclick="next()">Next</button>
+        <script type="text/javascript">
+            //disallow the canvas from being selected (had to put it in a div)
+            document.getElementById( "canvasDiv" ).disabled = true;
+
+            var g = new ConwaysGameOfLife( 30, 30 );
+            initController();
+
+            //begin remove these lines (just an example)
+                g.initializeBoard();
+                paint();
+                // console.log( g );
+                //document.getElementById( "boardDiv" ).innerHTML = "<pre>" + g + "</pre> \n";
+
+                //g.nextGeneration();
+                //paint();
+                //console.log( g );
+                //document.getElementById( "boardDiv" ).innerHTML = "<pre>" + g + "</pre> \n";
+            //end remove these lines
+                function reset(){
+                    g.initializeBoard("reset");
+                    paint();
+                    console.log( g );
+                }
+                function random(){
+                    g.initializeBoard("random");
+                    paint();
+                    console.log( g );
+                }
+                function next(){
+                    g.nextGeneration();
+                    paint();
+                    console.log( g );
+                }
+        </script>
+    </body>
+</html>
+
